@@ -16,10 +16,6 @@ async function init() {
     .find((el) => el.includes('ip'))
     .split('=')[1];
 
-  //   const response = await axios.post('http://localhost:3000/search', {
-  //     ip: ipAdd,
-  //   });
-
   const response = await axios.post('https://ip-reveal.herokuapp.com/search', {
     ip: ipAdd,
   });
