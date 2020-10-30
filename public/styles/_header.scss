@@ -98,6 +98,9 @@ header {
         width: 25%;
         height: unset;
         padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
 
         &:not(:first-of-type) {
           position: relative;
