@@ -1,0 +1,8 @@
+.map {
+  background-color: yellowgreen;
+  height: 100vh - $headerHeight;
+
+  @include ipad {
+    height: 100vh - ($headerHeight - 10);
+  }
+}

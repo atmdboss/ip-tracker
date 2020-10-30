@@ -1,0 +1,17 @@
+$headerHeight: 30vh;
+$fontSm: 0.8rem;
+$fontLg: 1.125rem;
+$ipadSize: 768px;
+$desktopSize: 1280px;
+
+@mixin desktop {
+  @media (min-width:#{$desktopSize}) {
+    @content;
+  }
+}
+
+@mixin ipad {
+  @media (min-width:#{$ipadSize}) {
+    @content;
+  }
+}
