@@ -1,13 +1,53 @@
 const form = document.querySelector('form');
 const formInput = document.querySelector('form input');
+const errorDiv = document.querySelector('.error');
 const address = document.querySelector('.details .address p');
 const locale = document.querySelector('.details .location p');
 const timezone = document.querySelector('.details .timezone p');
 const isp = document.querySelector('.details .isp p');
+const myMap = L.map('map');
 
 form.addEventListener('submit', function (e) {
   e.preventDefault();
-  // add error handling for empty inputs
+
+  const ipAddress = formInput.value.trim();
+  if (!ipAddress) {
+    errorDiv.classList.add('show');
+    errorDiv.textContent = 'Please enter an IP address';
+    setTimeout(() => {
+      errorDiv.classList.remove('show');
+      errorDiv.textContent = '';
+    }, 2000);
+    return;
+  } else {
+    const isValid = ipAddress.match(
+      /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gm
+    );
+    if (isValid) {
+      fetch('http://localhost:3000/search', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ip: isValid[0],
+        }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          updateDetails(data);
+          updateMap(data);
+        });
+    } else {
+      errorDiv.classList.add('show');
+      errorDiv.textContent = 'Please enter a valid IP address';
+      setTimeout(() => {
+        errorDiv.classList.remove('show');
+        errorDiv.textContent = '';
+      }, 2000);
+    }
+  }
 });
 
 function init() {
@@ -28,10 +68,7 @@ function init() {
 }
 
 function updateMap(responseData) {
-  const myMap = L.map('map').setView(
-    [responseData.location.lat, responseData.location.lng],
-    15
-  );
+  myMap.setView([responseData.location.lat, responseData.location.lng], 15);
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution:
       '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',

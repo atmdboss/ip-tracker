@@ -8,6 +8,7 @@ header {
   /********************* HEADER BIG SCREEN MEDIA QUERY *********************/
   /********************* H1 STYLES *********************/
   /*********************   FORM STYLES *********************/
+  /********************* ERROR STYLES *********************/
   /********************* DETAILS STYLES *********************/
 }
 
@@ -25,7 +26,6 @@ header h1 {
 header form {
   width: 100%;
   margin: auto;
-  margin-top: 0.5rem;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -74,12 +74,27 @@ header form button:hover {
   }
 }
 
+header .error {
+  visibility: hidden;
+  opacity: 0;
+  height: 1rem;
+  font-size: 0.8rem;
+  text-align: center;
+  color: white;
+  margin-bottom: 0.2rem;
+}
+
+header .error.show {
+  visibility: visible;
+  opacity: 1;
+}
+
 header .details {
   position: absolute;
   background-color: white;
   padding: 0.5rem;
   border-radius: 10px;
-  width: 80%;
+  width: 75%;
   height: 30vh;
   left: 50%;
   top: 15vh;
