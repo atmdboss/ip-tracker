@@ -24,7 +24,7 @@ form.addEventListener('submit', function (e) {
       /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gm
     );
     if (isValid) {
-      fetch('http://localhost:3000/search', {
+      fetch('https://ip-reveal.herokuapp.com/search', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -51,7 +51,7 @@ form.addEventListener('submit', function (e) {
 });
 
 function init() {
-  fetch('http://localhost:3000/search', {
+  fetch('https://ip-reveal.herokuapp.com/search', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
