@@ -14,7 +14,7 @@ header {
 
 @media (min-width: 768px) {
   header {
-    height: 20vh;
+    height: 30vh;
   }
 }
 
@@ -131,6 +131,7 @@ header .details div p {
     display: flex;
     text-align: left;
     height: 50%;
+    top: 23vh;
   }
   header .details div {
     width: 25%;

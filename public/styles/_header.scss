@@ -7,7 +7,7 @@ header {
 
   /********************* HEADER BIG SCREEN MEDIA QUERY *********************/
   @include ipad {
-    height: $headerHeight - 10;
+    height: $headerHeight;
   }
 
   /********************* H1 STYLES *********************/
@@ -84,7 +84,7 @@ header {
     width: 75%;
     height: $headerHeight;
     left: 50%;
-    top: $headerHeight/2;
+    top: $headerHeight / 2;
     transform: translateX(-50%);
 
     div {
@@ -109,6 +109,7 @@ header {
       display: flex;
       text-align: left;
       height: 50%;
+      top: $headerHeight - 7;
 
       div {
         width: 25%;

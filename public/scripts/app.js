@@ -7,64 +7,15 @@ const timezone = document.querySelector('.details .timezone p');
 const isp = document.querySelector('.details .isp p');
 const myMap = L.map('map');
 
-form.addEventListener('submit', function (e) {
-  e.preventDefault();
+form.addEventListener('submit', handleSubmit);
 
-  const ipAddress = formInput.value.trim();
-  if (!ipAddress) {
-    errorDiv.classList.add('show');
-    errorDiv.textContent = 'Please enter an IP address';
-    setTimeout(() => {
-      errorDiv.classList.remove('show');
-      errorDiv.textContent = '';
-    }, 2000);
-    return;
-  } else {
-    const isValid = ipAddress.match(
-      /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gm
-    );
-    if (isValid) {
-      fetch('https://ip-reveal.herokuapp.com/search', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          ip: isValid[0],
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          updateDetails(data);
-          updateMap(data);
-        });
-    } else {
-      errorDiv.classList.add('show');
-      errorDiv.textContent = 'Please enter a valid IP address';
-      setTimeout(() => {
-        errorDiv.classList.remove('show');
-        errorDiv.textContent = '';
-      }, 2000);
-    }
-  }
-});
-
-function init() {
-  fetch('https://ip-reveal.herokuapp.com/search', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify({
-      ip: '',
-    }),
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      updateDetails(data);
-      updateMap(data);
-    });
+async function init() {
+  const { data } = await axios.get('https://api.ipify.org/?format=json');
+  const response = await axios.post('https://ip-reveal.herokuapp.com/search', {
+    ip: data.ip,
+  });
+  updateDetails(response.data);
+  updateMap(response.data);
 }
 
 function updateMap(responseData) {
@@ -85,6 +36,42 @@ function updateDetails(responseData) {
   isp.textContent = responseData.isp;
   timezone.textContent = `UTC ${responseData.location.timezone}`;
   locale.textContent = `${responseData.location.city}, ${responseData.location.country}`;
+}
+
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const ipAddress = formInput.value.trim();
+  if (!ipAddress) {
+    errorDiv.classList.add('show');
+    errorDiv.textContent = 'Please enter an IP address';
+    setTimeout(() => {
+      errorDiv.classList.remove('show');
+      errorDiv.textContent = '';
+    }, 2000);
+    return;
+  } else {
+    const isValid = ipAddress.match(
+      /^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gm
+    );
+    if (isValid) {
+      const { data } = await axios.post(
+        'https://ip-reveal.herokuapp.com/search',
+        {
+          ip: isValid[0],
+        }
+      );
+      updateDetails(data);
+      updateMap(data);
+    } else {
+      errorDiv.classList.add('show');
+      errorDiv.textContent = 'Please enter a valid IP address';
+      setTimeout(() => {
+        errorDiv.classList.remove('show');
+        errorDiv.textContent = '';
+      }, 2000);
+    }
+  }
 }
 
 init();
