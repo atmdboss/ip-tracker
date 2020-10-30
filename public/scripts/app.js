@@ -10,9 +10,18 @@ const myMap = L.map('map');
 form.addEventListener('submit', handleSubmit);
 
 async function init() {
-  const { data } = await axios.get('https://api.ipify.org/?format=json');
+  const { data } = await axios.get('https://www.cloudflare.com/cdn-cgi/trace');
+  const ipAdd = data
+    .split('\n')
+    .find((el) => el.includes('ip'))
+    .split('=')[1];
+
+  //   const response = await axios.post('http://localhost:3000/search', {
+  //     ip: ipAdd,
+  //   });
+
   const response = await axios.post('https://ip-reveal.herokuapp.com/search', {
-    ip: data.ip,
+    ip: ipAdd,
   });
   updateDetails(response.data);
   updateMap(response.data);
