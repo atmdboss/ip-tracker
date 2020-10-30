@@ -4,6 +4,7 @@ header {
   position: relative;
   height: 30vh;
   text-align: center;
+  z-index: 1;
   /********************* HEADER BIG SCREEN MEDIA QUERY *********************/
   /********************* H1 STYLES *********************/
   /*********************   FORM STYLES *********************/
@@ -146,13 +147,13 @@ header .details div p {
   }
 }
 
-.map {
-  background-color: yellowgreen;
+#map {
   height: 70vh;
+  z-index: 0;
 }
 
 @media (min-width: 768px) {
-  .map {
+  #map {
     height: 80vh;
   }
 }

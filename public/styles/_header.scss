@@ -3,6 +3,7 @@ header {
   position: relative;
   height: $headerHeight;
   text-align: center;
+  z-index: 1;
 
   /********************* HEADER BIG SCREEN MEDIA QUERY *********************/
   @include ipad {

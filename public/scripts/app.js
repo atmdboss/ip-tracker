@@ -21,13 +21,33 @@ function init() {
     }),
   })
     .then((response) => response.json())
-    .then((data) => updateDetails(data));
+    .then((data) => {
+      updateDetails(data);
+      updateMap(data);
+    });
 }
-function updateMap() {}
+
+function updateMap(responseData) {
+  const myMap = L.map('map').setView(
+    [responseData.location.lat, responseData.location.lng],
+    15
+  );
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution:
+      '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    maxZoom: 15,
+  }).addTo(myMap);
+
+  L.marker([responseData.location.lat, responseData.location.lng])
+    .addTo(myMap)
+    .openPopup();
+}
+
 function updateDetails(responseData) {
   address.textContent = responseData.ip;
   isp.textContent = responseData.isp;
   timezone.textContent = `UTC ${responseData.location.timezone}`;
   locale.textContent = `${responseData.location.city}, ${responseData.location.country}`;
 }
+
 init();
