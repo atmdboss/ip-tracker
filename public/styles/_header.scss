@@ -18,11 +18,12 @@ header {
 
   /*********************   FORM STYLES *********************/
   form {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
     width: 100%;
-    margin: auto;
     display: flex;
     justify-content: center;
-    z-index: 10;
 
     input {
       border-radius: 7px 0 0 7px;
