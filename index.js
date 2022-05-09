@@ -8,7 +8,12 @@ const requestIP = require('request-ip');
 const app = express();
 const ipdata = new IPData(process.env.API_KEY);
 
-app.use(cors());
+app.use(
+  cors({
+    origin: '*',
+    methods: ['POST', 'GET'],
+  })
+);
 app.use(express.static('./public'));
 app.use(express.json());
 
