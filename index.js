@@ -19,7 +19,9 @@ app.use(express.json());
 
 app.post('/search', async (req, res) => {
   const { ip } = req.body;
-  // console.log({ req });
+  const userip = req.header('x-forwarded-for');
+
+  console.log({ req, userip, clientIp: req.clientIp });
   let ipToLookUp;
 
   if (!ip) {
