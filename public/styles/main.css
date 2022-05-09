@@ -11,32 +11,23 @@ header {
   /********************* ERROR STYLES *********************/
   /********************* DETAILS STYLES *********************/
 }
-
 @media (min-width: 768px) {
   header {
     height: 30vh;
   }
 }
-
 header h1 {
   color: white;
   padding-top: 1rem;
 }
-
 header form {
   position: absolute;
   left: 50%;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
   display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  justify-content: center;
 }
-
 header form input {
   border-radius: 7px 0 0 7px;
   display: block;
@@ -46,7 +37,6 @@ header form input {
   border: none;
   padding: 0.5rem;
 }
-
 header form button {
   width: 10%;
   height: 2rem;
@@ -56,27 +46,23 @@ header form button {
   outline: none;
   border-radius: 0 7px 7px 0;
 }
-
 header form button:hover {
   cursor: pointer;
 }
-
 @media (min-width: 768px) {
   header form {
     width: 70%;
   }
   header form input,
-  header form button {
+header form button {
     height: 2.5rem;
   }
 }
-
 @media (min-width: 1280px) {
   header form {
     width: 50%;
   }
 }
-
 header .error {
   visibility: hidden;
   opacity: 0;
@@ -86,12 +72,10 @@ header .error {
   color: white;
   margin-bottom: 0.2rem;
 }
-
 header .error.show {
   visibility: visible;
   opacity: 1;
 }
-
 header .details {
   position: absolute;
   background-color: white;
@@ -101,36 +85,28 @@ header .details {
   height: 30vh;
   left: 50%;
   top: 15vh;
-  -webkit-transform: translateX(-50%);
-          transform: translateX(-50%);
+  transform: translateX(-50%);
   /********************* DETAILS BIG SCREEN MEDIA QUERY *********************/
 }
-
 header .details div {
-  height: 25%;
+  height: 20%;
 }
-
 header .details div span {
   text-transform: uppercase;
-  color: #969696;
+  color: hsl(0deg, 0%, 59%);
   font-size: 0.625rem;
 }
-
 header .details div p {
   text-transform: capitalize;
   font-weight: 500;
 }
-
 @media (min-width: 768px) {
   header .details div p {
     font-size: 1rem;
   }
 }
-
 @media (min-width: 768px) {
   header .details {
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
     text-align: left;
     height: 50%;
@@ -140,29 +116,21 @@ header .details div p {
     width: 25%;
     height: unset;
     padding: 0.5rem;
-    display: -webkit-box;
-    display: -ms-flexbox;
     display: flex;
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
+    flex-direction: column;
+    justify-content: center;
   }
   header .details div:not(:first-of-type) {
     position: relative;
   }
   header .details div:not(:first-of-type)::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 50%;
     left: 0px;
-    -webkit-transform: translateY(-50%);
-            transform: translateY(-50%);
+    transform: translateY(-50%);
     height: 50%;
-    border-left: 1px solid #969696;
+    border-left: 1px solid hsl(0deg, 0%, 59%);
   }
 }
 
@@ -170,7 +138,6 @@ header .details div p {
   height: 70vh;
   z-index: 0;
 }
-
 @media (min-width: 768px) {
   #map {
     height: 80vh;
@@ -180,20 +147,17 @@ header .details div p {
 * {
   padding: 0;
   margin: 0;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
   width: 100vw;
   height: 100vh;
-  font-family: 'Rubik', sans-serif;
+  font-family: "Rubik", sans-serif;
   font-size: 0.8rem;
 }
-
 @media (min-width: 768px) {
   body {
     font-size: 1.125rem;
   }
-}
-/*# sourceMappingURL=main.css.map */
+}/*# sourceMappingURL=main.css.map */
