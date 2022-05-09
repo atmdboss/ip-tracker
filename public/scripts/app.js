@@ -23,14 +23,14 @@ async function init() {
       .find((el) => el.includes('ip'))
       .split('=')[1];
 
-    const response = await axios.post('https://ip-reveal.herokuapp.com/search', {
+    const response = await axios.post(`${window.location.origin}/search`, {
       ip: ipAdd,
     });
 
     updateDetails(response.data);
     updateMap(response.data);
   } catch (error) {
-    const response = await axios.post('https://ip-reveal.herokuapp.com/search', {
+    const response = await axios.post(`${window.location.origin}/search`, {
       ip: '',
     });
 
@@ -73,7 +73,7 @@ async function handleSubmit(e) {
     // regex for ipv4 address
     const isValid = ipAddress.match(/^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$/gm);
     if (isValid) {
-      const { data } = await axios.post('https://ip-reveal.herokuapp.com/search', {
+      const { data } = await axios.post(`${window.location.origin}/search`, {
         ip: isValid[0],
       });
 
