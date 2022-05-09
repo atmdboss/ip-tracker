@@ -3,7 +3,7 @@ const express = require('express');
 const cors = require('cors');
 const IPData = require('ipdata').default;
 // const nodeIP = require('ip');
-const requestIP = require('request-ip');
+// const requestIP = require('request-ip');
 
 const app = express();
 const ipdata = new IPData(process.env.API_KEY);
@@ -25,13 +25,13 @@ app.post('/search', async (req, res) => {
   let ipToLookUp;
 
   if (!ip) {
-    ipToLookUp = requestIP.getClientIp(req);
+    ipToLookUp = userip;
   } else {
     ipToLookUp = ip;
   }
 
   try {
-    const info = await ipdata.lookup(ip);
+    const info = await ipdata.lookup(ipToLookUp);
     res.status(200).send(info);
   } catch (error) {
     console.log({ error: error.message });
