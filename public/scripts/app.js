@@ -12,15 +12,6 @@ form.addEventListener('submit', handleSubmit);
 
 async function init() {
   try {
-    const { data } = await axios.get('https://www.cloudflare.com/cdn-cgi/trace');
-
-    const ipAdd = data
-      .split('\n')
-      .find((el) => el.includes('ip'))
-      .split('=')[1];
-
-    console.log({ ipAdd });
-
     const response = await axios.post(`${window.location.origin}/search`);
 
     updateDetails(response.data);
