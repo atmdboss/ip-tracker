@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const IPData = require('ipdata').default;
+const nodeIP = require('ip');
 
 const app = express();
 const ipdata = new IPData(process.env.API_KEY);
@@ -12,7 +13,14 @@ app.use(express.json());
 
 app.post('/search', async (req, res) => {
   const { ip } = req.body;
-  console.log({ req });
+  // console.log({ req });
+  let ipToLookUp;
+
+  if (!ip) {
+    ipToLookUp = nodeIP.address();
+  } else {
+    ipToLookUp = ip;
+  }
 
   try {
     const info = await ipdata.lookup(ip);

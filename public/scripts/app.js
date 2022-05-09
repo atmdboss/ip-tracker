@@ -12,20 +12,18 @@ form.addEventListener('submit', handleSubmit);
 
 async function init() {
   try {
-    const { data } = await axios.get('https://www.cloudflare.com/cdn-cgi/trace', {
-      headers: {
-        'Access-Control-Allow-Origin': '*',
-      },
-    });
+    // const { data } = await axios.get('https://www.cloudflare.com/cdn-cgi/trace', {
+    //   headers: {
+    //     'Access-Control-Allow-Origin': '*',
+    //   },
+    // });
 
-    const ipAdd = data
-      .split('\n')
-      .find((el) => el.includes('ip'))
-      .split('=')[1];
+    // const ipAdd = data
+    //   .split('\n')
+    //   .find((el) => el.includes('ip'))
+    //   .split('=')[1];
 
-    const response = await axios.post(`${window.location.origin}/search`, {
-      ip: ipAdd,
-    });
+    const response = await axios.post(`${window.location.origin}/search`);
 
     updateDetails(response.data);
     updateMap(response.data);
