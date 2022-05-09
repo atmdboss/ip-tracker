@@ -12,7 +12,11 @@ form.addEventListener('submit', handleSubmit);
 
 async function init() {
   try {
-    const { data } = await axios.get('https://www.cloudflare.com/cdn-cgi/trace');
+    const { data } = await axios.get('https://www.cloudflare.com/cdn-cgi/trace', {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+      },
+    });
 
     const ipAdd = data
       .split('\n')

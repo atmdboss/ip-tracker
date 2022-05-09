@@ -12,6 +12,7 @@ app.use(express.json());
 
 app.post('/search', async (req, res) => {
   const { ip } = req.body;
+  console.log({ req });
 
   try {
     const info = await ipdata.lookup(ip);
