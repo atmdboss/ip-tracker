@@ -38,7 +38,7 @@ function updateMap(responseData) {
 
 function updateDetails(responseData) {
   address.textContent = responseData.ip;
-  isp.textContent = responseData.carrier?.name || responseData.company.name;
+  isp.textContent = responseData.asn?.name || responseData.carrier?.name || responseData.company.name;
   timezone.textContent = `UTC ${responseData.time_zone.offset}`;
   locale.textContent = `${responseData.city}, ${responseData.country_name}`;
   region.textContent = responseData.region;
